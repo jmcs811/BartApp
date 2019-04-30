@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/ClosestStationFragment"
+    tools:ignore="UnusedNavigation">
+
+    <!--Fragment IDs must be the same as the -->
+    <!--bottomnav bar IDs. -->
+
+    <fragment
+        android:id="@+id/ClosestStationFragment"
+        android:name="com.jcaseydev.bart.ClosestStationFragment"
+        android:label="closest_station_fragment"
+        tools:layout="@layout/fragment_closest_station" >
+    </fragment>
+
+    <fragment
+        android:id="@+id/StationListFragment"
+        android:name="com.jcaseydev.bart.StationListFragment"
+        android:label="station_list_fragment"
+        tools:layout="@layout/fragment_station_list" >
+    </fragment>
+
+    <fragment
+        android:id="@+id/FareFragment"
+        android:name="com.jcaseydev.bart.FareFragment"
+        android:label="fragment_fare"
+        tools:layout="@layout/fragment_fare" >
+    </fragment>
+
+</navigation>

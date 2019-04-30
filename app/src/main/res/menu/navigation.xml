@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/ClosestStationFragment"
+        android:icon="@drawable/ic_my_location_black_24dp"
+        android:title="@string/nav_closest_station" />
+
+    <item
+        android:id="@+id/StationListFragment"
+        android:icon="@drawable/ic_menu_black_24dp"
+        android:title="@string/nav_station_list" />
+
+    <item
+        android:id="@+id/FareFragment"
+        android:icon="@drawable/ic_attach_money_black_24dp"
+        android:title="@string/nav_fare_price" />
+</menu>
