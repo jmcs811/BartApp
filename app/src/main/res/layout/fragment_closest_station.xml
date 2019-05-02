@@ -12,15 +12,29 @@
 
         <TextView
             android:id="@+id/textView"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/fragment_1" />
+            android:text="Origin:"
+            android:textStyle="bold" />
 
-        <Button
-            android:id="@+id/button"
-            android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/origin_textview"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/fragment_1_button" />
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Destination:"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/destination_textview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
     </LinearLayout>
 
 </FrameLayout>
