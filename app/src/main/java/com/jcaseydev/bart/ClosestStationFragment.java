@@ -11,14 +11,14 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.jcaseydev.bart.Model.Root;
-import com.jcaseydev.bart.Model.Station;
-
-import java.util.List;
+import com.google.gson.GsonBuilder;
+import com.jcaseydev.bart.Model.Example;
+import com.jcaseydev.bart.Model.TrainArrival;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import com.jcaseydev.bart.Model.TrainArrival;
 
 
 /**
@@ -26,9 +26,7 @@ import retrofit2.Response;
  */
 public class ClosestStationFragment extends Fragment {
 
-    List<Station> stations;
-    private TextView mTextView;
-
+    Example testRoot = new Example();
     private ApiInterface mService;
 
     public ClosestStationFragment() {
@@ -38,25 +36,6 @@ public class ClosestStationFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        mService = ApiUtils.getApiInterface();
-        mService.getData().enqueue(new Callback<Root>() {
-            @Override
-            public void onResponse(Call<Root> call, Response<Root> response) {
-                if (response.isSuccessful()) {
-                    stations = response.body().getStation();
-                    Log.d("TAG", "posts loaded");
-                } else {
-                    int statusCode = response.code();
-                    Log.d("TAG", Integer.toString(statusCode));
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Root> call, Throwable t) {
-                Log.d("TAG", t.getMessage());
-            }
-        });
 
 
     }
@@ -68,13 +47,28 @@ public class ClosestStationFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_closest_station, container, false);
 
-        if (stations == null) {
-            Log.d("TAG", "stations is null");
-        } else {
-            for (int i = 0; i < stations.size(); i++) {
-                Log.d("TAG", stations.get(i).toString());
+        final TextView testTextView = v.findViewById(R.id.origin_textview);
+
+        mService = ApiUtils.getApiInterface();
+        mService.getData().enqueue(new Callback<Example>() {
+            @Override
+            public void onResponse(Call<Example> call, Response<Example> response) {
+                if (response.isSuccessful()) {
+                    testRoot = response.body();
+                    testTextView.setText(testRoot.getRoot().getStation().get(0).getName());
+                    Log.d("TAG", new GsonBuilder().setPrettyPrinting().create().toJson(response));
+                } else {
+                    int statusCode = response.code();
+                    Log.d("TAG", Integer.toString(statusCode));
+                }
             }
-        }
+
+            @Override
+            public void onFailure(Call<Example> call, Throwable t) {
+                Log.d("TAG", t.getMessage());
+            }
+        });
+
         return v;
     }
 }

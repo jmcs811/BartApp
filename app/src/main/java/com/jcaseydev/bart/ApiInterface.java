@@ -1,12 +1,14 @@
 package com.jcaseydev.bart;
 
-import com.jcaseydev.bart.Model.Root;
+import com.jcaseydev.bart.Model.Example;
+import com.jcaseydev.bart.Model.TrainArrival;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
 
 public interface ApiInterface {
 
-    @GET("etd.aspx?cmd=etd&key=API_KEY&orig=ANTC&json=y")
-    Call<Root> getData();
+    // public API key
+    @GET("api/etd.aspx?cmd=etd&key=MW9S-E7SL-26DU-VV8V&orig=ANTC&json=y")
+    Call<Example> getData();
 }

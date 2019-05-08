@@ -6,27 +6,35 @@ import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Root {
+public class TrainArrival {
+
+    public TrainArrival() {
+    }
 
     @SerializedName("@id")
     @Expose
     private String id;
-    @SerializedName("uri")
-    @Expose
-    private Uri uri;
+
+//    @SerializedName("uri")
+//    @Expose
+//    private Uri uri;
+
     @SerializedName("date")
     @Expose
     private String date;
+
     @SerializedName("time")
     @Expose
     private String time;
+
     @SerializedName("station")
     @Expose
     private List<Station> station = null;
+
     @SerializedName("message")
     @Expose
     private String message;
-
+//
     public String getId() {
         return id;
     }
@@ -35,13 +43,13 @@ public class Root {
         this.id = id;
     }
 
-    public Uri getUri() {
-        return uri;
-    }
-
-    public void setUri(Uri uri) {
-        this.uri = uri;
-    }
+//    public Uri getUri() {
+//        return uri;
+//    }
+//
+//    public void setUri(Uri uri) {
+//        this.uri = uri;
+//    }
 
     public String getDate() {
         return date;
