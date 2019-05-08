@@ -12,13 +12,11 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.google.gson.GsonBuilder;
-import com.jcaseydev.bart.Model.Example;
 import com.jcaseydev.bart.Model.TrainArrival;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import com.jcaseydev.bart.Model.TrainArrival;
 
 
 /**
@@ -26,7 +24,7 @@ import com.jcaseydev.bart.Model.TrainArrival;
  */
 public class ClosestStationFragment extends Fragment {
 
-    Example testRoot = new Example();
+    TrainArrival testRoot = new TrainArrival();
     private ApiInterface mService;
 
     public ClosestStationFragment() {
@@ -50,12 +48,12 @@ public class ClosestStationFragment extends Fragment {
         final TextView testTextView = v.findViewById(R.id.origin_textview);
 
         mService = ApiUtils.getApiInterface();
-        mService.getData().enqueue(new Callback<Example>() {
+        mService.getData().enqueue(new Callback<TrainArrival>() {
             @Override
-            public void onResponse(Call<Example> call, Response<Example> response) {
+            public void onResponse(Call<TrainArrival> call, Response<TrainArrival> response) {
                 if (response.isSuccessful()) {
                     testRoot = response.body();
-                    testTextView.setText(testRoot.getRoot().getStation().get(0).getName());
+                    testTextView.setText(testRoot.getRoot().getStation().get(0).getEtd().get(0).getEstimate().get(0).getHexcolor());
                     Log.d("TAG", new GsonBuilder().setPrettyPrinting().create().toJson(response));
                 } else {
                     int statusCode = response.code();
@@ -64,7 +62,7 @@ public class ClosestStationFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<Example> call, Throwable t) {
+            public void onFailure(Call<TrainArrival> call, Throwable t) {
                 Log.d("TAG", t.getMessage());
             }
         });
