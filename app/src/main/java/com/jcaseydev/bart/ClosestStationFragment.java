@@ -38,7 +38,6 @@ public class ClosestStationFragment extends Fragment {
 
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -53,7 +52,6 @@ public class ClosestStationFragment extends Fragment {
             public void onResponse(Call<TrainArrival> call, Response<TrainArrival> response) {
                 if (response.isSuccessful()) {
                     testRoot = response.body();
-                    testTextView.setText(testRoot.getRoot().getStation().get(0).getEtd().get(0).getEstimate().get(0).getHexcolor());
                     Log.d("TAG", new GsonBuilder().setPrettyPrinting().create().toJson(response));
                 } else {
                     int statusCode = response.code();
