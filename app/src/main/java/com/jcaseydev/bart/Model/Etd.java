@@ -6,49 +6,49 @@ import com.google.gson.annotations.SerializedName;
 
 public class Etd {
 
-    @SerializedName("destination")
-    @Expose
-    private String destination;
-    @SerializedName("abbreviation")
-    @Expose
-    private String abbreviation;
-    @SerializedName("limited")
-    @Expose
-    private String limited;
-    @SerializedName("estimate")
-    @Expose
-    private List<Estimate> estimate = null;
+  @SerializedName("destination")
+  @Expose
+  private String destination;
+  @SerializedName("abbreviation")
+  @Expose
+  private String abbreviation;
+  @SerializedName("limited")
+  @Expose
+  private String limited;
+  @SerializedName("estimate")
+  @Expose
+  private List<Estimate> estimate = null;
 
-    public String getDestination() {
-        return destination;
-    }
+  public String getDestination() {
+    return destination;
+  }
 
-    public void setDestination(String destination) {
-        this.destination = destination;
-    }
+  public void setDestination(String destination) {
+    this.destination = destination;
+  }
 
-    public String getAbbreviation() {
-        return abbreviation;
-    }
+  public String getAbbreviation() {
+    return abbreviation;
+  }
 
-    public void setAbbreviation(String abbreviation) {
-        this.abbreviation = abbreviation;
-    }
+  public void setAbbreviation(String abbreviation) {
+    this.abbreviation = abbreviation;
+  }
 
-    public String getLimited() {
-        return limited;
-    }
+  public String getLimited() {
+    return limited;
+  }
 
-    public void setLimited(String limited) {
-        this.limited = limited;
-    }
+  public void setLimited(String limited) {
+    this.limited = limited;
+  }
 
-    public List<Estimate> getEstimate() {
-        return estimate;
-    }
+  public List<Estimate> getEstimate() {
+    return estimate;
+  }
 
-    public void setEstimate(List<Estimate> estimate) {
-        this.estimate = estimate;
-    }
+  public void setEstimate(List<Estimate> estimate) {
+    this.estimate = estimate;
+  }
 
 }

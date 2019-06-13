@@ -16,16 +16,16 @@ import android.view.ViewGroup;
 public class StationListFragment extends Fragment {
 
 
-    public StationListFragment() {
-        // Required empty public constructor
-    }
+  public StationListFragment() {
+    // Required empty public constructor
+  }
 
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_station_list, container, false);
-    }
+  @Override
+  public View onCreateView(LayoutInflater inflater, ViewGroup container,
+      Bundle savedInstanceState) {
+    // Inflate the layout for this fragment
+    return inflater.inflate(R.layout.fragment_station_list, container, false);
+  }
 
 }

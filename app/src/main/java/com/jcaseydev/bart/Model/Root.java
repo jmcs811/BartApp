@@ -6,67 +6,68 @@ import com.google.gson.annotations.SerializedName;
 
 public class Root {
 
-    public Root() {
-    }
+  public Root() {
+  }
 
-    @SerializedName("@id")
-    @Expose
-    private String id;
+  @SerializedName("@id")
+  @Expose
+  private String id;
 
-    @SerializedName("date")
-    @Expose
-    private String date;
+  @SerializedName("date")
+  @Expose
+  private String date;
 
-    @SerializedName("time")
-    @Expose
-    private String time;
+  @SerializedName("time")
+  @Expose
+  private String time;
 
-    @SerializedName("station")
-    @Expose
-    private List<Station> station = null;
+  @SerializedName("station")
+  @Expose
+  private List<Station> station = null;
 
-    @SerializedName("message")
-    @Expose
-    private String message;
-//
-    public String getId() {
-        return id;
-    }
+  @SerializedName("message")
+  @Expose
+  private String message;
 
-    public void setId(String id) {
-        this.id = id;
-    }
+  //
+  public String getId() {
+    return id;
+  }
 
-    public String getDate() {
-        return date;
-    }
+  public void setId(String id) {
+    this.id = id;
+  }
 
-    public void setDate(String date) {
-        this.date = date;
-    }
+  public String getDate() {
+    return date;
+  }
 
-    public String getTime() {
-        return time;
-    }
+  public void setDate(String date) {
+    this.date = date;
+  }
 
-    public void setTime(String time) {
-        this.time = time;
-    }
+  public String getTime() {
+    return time;
+  }
 
-    public List<Station> getStation() {
-        return station;
-    }
+  public void setTime(String time) {
+    this.time = time;
+  }
 
-    public void setStation(List<Station> station) {
-        this.station = station;
-    }
+  public List<Station> getStation() {
+    return station;
+  }
 
-    public String getMessage() {
-        return message;
-    }
+  public void setStation(List<Station> station) {
+    this.station = station;
+  }
 
-    public void setMessage(String message) {
-        this.message = message;
-    }
+  public String getMessage() {
+    return message;
+  }
+
+  public void setMessage(String message) {
+    this.message = message;
+  }
 
 }

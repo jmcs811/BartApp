@@ -9,27 +9,27 @@ import com.google.gson.annotations.SerializedName;
 //@Entity(tableName = "train_data")
 public class TrainArrival {
 
-    //@PrimaryKey(autoGenerate = true)
-    private int id;
+  //@PrimaryKey(autoGenerate = true)
+  private int id;
 
-    @SerializedName("root")
-    @Expose
-    private Root root;
+  @SerializedName("root")
+  @Expose
+  private Root root;
 
-    public int getId() {
-        return id;
-    }
+  public int getId() {
+    return id;
+  }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+  public void setId(int id) {
+    this.id = id;
+  }
 
-    public Root getRoot() {
-        return root;
-    }
+  public Root getRoot() {
+    return root;
+  }
 
-    public void setRoot(Root root) {
-        this.root = root;
-    }
+  public void setRoot(Root root) {
+    this.root = root;
+  }
 
 }

@@ -13,22 +13,22 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener{
+    implements NavigationView.OnNavigationItemSelectedListener {
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView2);
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_main);
+    BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView2);
 
-        // get handle to NavController and setup bottom nav
-        NavController navController = Navigation.findNavController(MainActivity.this, R.id.nav_host_fragment);
-        NavigationUI.setupWithNavController(bottomNavigationView, navController);
-    }
+    // get handle to NavController and setup bottom nav
+    NavController navController = Navigation
+        .findNavController(MainActivity.this, R.id.nav_host_fragment);
+    NavigationUI.setupWithNavController(bottomNavigationView, navController);
+  }
 
-
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-        return false;
-    }
+  @Override
+  public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+    return false;
+  }
 }
