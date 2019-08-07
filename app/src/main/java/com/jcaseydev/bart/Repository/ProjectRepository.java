@@ -1,13 +1,5 @@
 package com.jcaseydev.bart.Repository;
 
-import android.app.Application;
-
-import androidx.lifecycle.LiveData;
-
-import com.jcaseydev.bart.Model.TrainArrival;
-
-import java.util.List;
-
 public class ProjectRepository {
     // DAO STUFF not ready yet
 //    private TrainDao trainDao;

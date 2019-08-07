@@ -1,7 +1,4 @@
-package com.jcaseydev.bart.Model;
-
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
+package com.jcaseydev.bart.Model2.Arrivals;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -14,7 +11,7 @@ public class TrainArrival {
 
   @SerializedName("root")
   @Expose
-  private Root root;
+  private ArrivalRoot root;
 
   public int getId() {
     return id;
@@ -24,11 +21,11 @@ public class TrainArrival {
     this.id = id;
   }
 
-  public Root getRoot() {
+  public ArrivalRoot getRoot() {
     return root;
   }
 
-  public void setRoot(Root root) {
+  public void setRoot(ArrivalRoot root) {
     this.root = root;
   }
 

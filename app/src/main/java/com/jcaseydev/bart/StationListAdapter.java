@@ -7,15 +7,15 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import com.jcaseydev.bart.Model2.Station;
+import com.jcaseydev.bart.Model2.Stations.Station;
 import java.util.List;
 
-public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomViewHolder> {
+public class StationListAdapter extends RecyclerView.Adapter<StationListAdapter.CustomViewHolder> {
 
   private List<Station> datalist;
   private Context context;
 
-  public CustomAdapter(Context context, List<Station> datalist) {
+  public StationListAdapter(Context context, List<Station> datalist) {
     this.context = context;
     this.datalist = datalist;
   }

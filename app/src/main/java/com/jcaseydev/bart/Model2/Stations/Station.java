@@ -1,4 +1,4 @@
-package com.jcaseydev.bart.Model2;
+package com.jcaseydev.bart.Model2.Stations;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
