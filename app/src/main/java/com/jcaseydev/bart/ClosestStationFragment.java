@@ -25,7 +25,7 @@ import retrofit2.Response;
 public class ClosestStationFragment extends Fragment {
 
     TrainArrival testRoot = new TrainArrival();
-    private ApiInterface mService;
+    private ApiInterface mService = RetrofitClient.getClient().create(ApiInterface.class);
 
     public ClosestStationFragment() {
         // Required empty public constructor
@@ -46,23 +46,22 @@ public class ClosestStationFragment extends Fragment {
 
         final TextView testTextView = v.findViewById(R.id.origin_textview);
 
-        mService = ApiUtils.getApiInterface();
         mService.getData().enqueue(new Callback<TrainArrival>() {
             @Override
             public void onResponse(Call<TrainArrival> call, Response<TrainArrival> response) {
                 if (response.isSuccessful()) {
                     testRoot = response.body();
                     testTextView.setText(testRoot.getRoot().getStation().get(0).getName());
-                    Log.d("TAG", new GsonBuilder().setPrettyPrinting().create().toJson(response));
+                    Log.d("TAG: RESPONSE", new GsonBuilder().setPrettyPrinting().create().toJson(response));
                 } else {
                     int statusCode = response.code();
-                    Log.d("TAG", Integer.toString(statusCode));
+                    Log.d("TAG: STATUS CODE", Integer.toString(statusCode));
                 }
             }
 
             @Override
             public void onFailure(Call<TrainArrival> call, Throwable t) {
-                Log.d("TAG", t.getMessage());
+                Log.d("TAG: FAILURE", t.getMessage());
             }
         });
 
