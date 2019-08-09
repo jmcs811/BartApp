@@ -1,28 +1,16 @@
-package com.jcaseydev.bart.Model2;
+package com.jcaseydev.bart.Model2.Stations;
 
-import android.net.Uri;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Root {
+public class StationListRoot {
 
-//  @SerializedName("uri")
-//  @Expose
-//  private Uri uri;
   @SerializedName("stations")
   @Expose
   private Stations stations;
   @SerializedName("message")
   @Expose
   private String message;
-
-//  public Uri getUri() {
-//    return uri;
-//  }
-//
-//  public void setUri(Uri uri) {
-//    this.uri = uri;
-//  }
 
   public Stations getStations() {
     return stations;

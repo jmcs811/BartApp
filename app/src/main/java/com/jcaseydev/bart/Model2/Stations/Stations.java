@@ -1,4 +1,4 @@
-package com.jcaseydev.bart.Model2;
+package com.jcaseydev.bart.Model2.Stations;
 
 import java.util.List;
 import com.google.gson.annotations.Expose;
