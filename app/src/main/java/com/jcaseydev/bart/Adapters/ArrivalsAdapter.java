@@ -1,4 +1,4 @@
-package com.jcaseydev.bart;
+package com.jcaseydev.bart.Adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.jcaseydev.bart.Model2.Arrivals.Estimate;
 import com.jcaseydev.bart.Model2.Arrivals.Etd;
+import com.jcaseydev.bart.R;
 import java.util.List;
 
 public class ArrivalsAdapter extends RecyclerView.Adapter<ArrivalsAdapter.CustomViewHolder> {

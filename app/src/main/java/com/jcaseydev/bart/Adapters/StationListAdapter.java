@@ -1,4 +1,4 @@
-package com.jcaseydev.bart;
+package com.jcaseydev.bart.Adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,6 +8,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.jcaseydev.bart.Model2.Stations.Station;
+import com.jcaseydev.bart.R;
 import java.util.List;
 
 public class StationListAdapter extends RecyclerView.Adapter<StationListAdapter.CustomViewHolder> {

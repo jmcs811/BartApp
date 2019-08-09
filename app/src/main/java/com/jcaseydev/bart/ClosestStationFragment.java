@@ -1,7 +1,6 @@
 package com.jcaseydev.bart;
 
 
-import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,9 +12,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationCallback;
 import com.google.gson.GsonBuilder;
+import com.jcaseydev.bart.Adapters.ArrivalsAdapter;
 import com.jcaseydev.bart.Model2.Arrivals.TrainArrival;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -27,14 +25,8 @@ import retrofit2.Response;
  */
 public class ClosestStationFragment extends Fragment {
 
-    private static final int REQUEST_LOCATION = 1;
-    private static final int DIALOG_PERMISSION_REASON = 2;
-
     TrainArrival testRoot = new TrainArrival();
     private ApiInterface mService = RetrofitClient.getClient().create(ApiInterface.class);
-    private FusedLocationProviderClient fusedLocationProviderClient;
-    private Location currentLocation;
-    private LocationCallback locationCallback;
     private RecyclerView recyclerView;
     private ArrivalsAdapter arrivalsAdapter;
 
