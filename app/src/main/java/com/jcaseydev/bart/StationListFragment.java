@@ -25,7 +25,6 @@ import java.util.List;
  */
 public class StationListFragment extends Fragment {
 
-  private StationList testList;
   private RecyclerView recyclerView;
   private StationListAdapter adapter;
   private StationListViewModel viewModel;
