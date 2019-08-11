@@ -2,10 +2,7 @@
     <string name="app_name">Bart</string>
     <string name="nav_closest_station">Closest Station</string>
     <string name="nav_station_list">Stations</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="fragment_1">Fragment 1</string>
     <string name="fragment_1_button">fragment 1 Button</string>
     <string name="nav_fare_price">Fare</string>
+    <string name="station_location">%1$s, CA %2$s</string>
 </resources>

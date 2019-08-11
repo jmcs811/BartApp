@@ -1,13 +1,13 @@
 package com.jcaseydev.bart.ViewModels;
 
-import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 import com.jcaseydev.bart.Model2.Stations.StationList;
 import com.jcaseydev.bart.Repository.ProjectRepository;
 
 public class StationListViewModel extends ViewModel {
 
-  private MutableLiveData<StationList> stationList;
+  private LiveData<StationList> stationList;
   private ProjectRepository repo;
 
   public StationListViewModel() {
@@ -21,7 +21,7 @@ public class StationListViewModel extends ViewModel {
     stationList = repo.getStations();
   }
 
-  public MutableLiveData<StationList> getStationList() {
+  public LiveData<StationList> getStationList() {
     return this.stationList;
   }
 }

@@ -13,12 +13,12 @@ import java.util.List;
 
 public class StationListAdapter extends RecyclerView.Adapter<StationListAdapter.CustomViewHolder> {
 
-  private List<Station> datalist;
+  private List<Station> stationList;
   private Context context;
 
-  public StationListAdapter(Context context, List<Station> datalist) {
+  public StationListAdapter(Context context, List<Station> stationList) {
     this.context = context;
-    this.datalist = datalist;
+    this.stationList = stationList;
   }
 
   @NonNull
@@ -31,15 +31,15 @@ public class StationListAdapter extends RecyclerView.Adapter<StationListAdapter.
 
   @Override
   public void onBindViewHolder(@NonNull CustomViewHolder holder, int position) {
-    String city = datalist.get(position).getCity();
-    String zipCode = datalist.get(position).getZipcode();
-    holder.stationName.setText(datalist.get(position).getName());
-    holder.stationCity.setText(city + ", CA " + zipCode);
+    String city = stationList.get(position).getCity();
+    String zipCode = stationList.get(position).getZipcode();
+    holder.stationName.setText(stationList.get(position).getName());
+    holder.stationCity.setText(context.getString(R.string.station_location, city, zipCode));
   }
 
   @Override
   public int getItemCount() {
-    return datalist.size();
+    return stationList.size();
   }
 
   class CustomViewHolder  extends RecyclerView.ViewHolder {
