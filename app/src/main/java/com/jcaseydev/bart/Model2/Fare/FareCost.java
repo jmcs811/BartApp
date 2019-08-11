@@ -17,4 +17,16 @@ public class FareCost {
     this.root = root;
   }
 
+  public String getOrigin() {
+    return getRoot().getOrigin();
+  }
+
+  public String getDestination() {
+    return getRoot().getDestination();
+  }
+
+  public String getFare() {
+    return getRoot().getTrip().getFare();
+  }
+
 }

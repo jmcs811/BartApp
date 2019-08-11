@@ -71,7 +71,7 @@ public class ClosestStationFragment extends Fragment {
       @Override
       public void onChanged(TrainArrival trainArrival) {
         testTextView.setText(trainArrival.getRoot().getStation().get(0).getName());
-        arrivals.addAll(trainArrival.getArrivals());
+        arrivals.addAll(trainArrival.getRoot().getStation().get(0).getEtd());
         arrivalsAdapter.notifyDataSetChanged();
       }
     });

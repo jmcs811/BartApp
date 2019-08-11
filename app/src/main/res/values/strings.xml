@@ -5,4 +5,5 @@
     <string name="fragment_1_button">fragment 1 Button</string>
     <string name="nav_fare_price">Fare</string>
     <string name="station_location">%1$s, CA %2$s</string>
+    <string name="fare_cost">$%1$s</string>
 </resources>
