@@ -42,7 +42,7 @@ public class StationListAdapter extends RecyclerView.Adapter<StationListAdapter.
     return stationList.size();
   }
 
-  class CustomViewHolder  extends RecyclerView.ViewHolder {
+  class CustomViewHolder extends RecyclerView.ViewHolder {
 
     public final View mView;
     TextView stationName;

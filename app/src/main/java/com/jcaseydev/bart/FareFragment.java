@@ -3,11 +3,17 @@ package com.jcaseydev.bart;
 
 import android.os.Bundle;
 
+import android.util.Log;
+import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import com.jcaseydev.bart.Model2.Fare.FareCost;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 /**
@@ -15,6 +21,8 @@ import android.view.ViewGroup;
  */
 public class FareFragment extends Fragment {
 
+
+  private FareCost fareCost;
 
   public FareFragment() {
     // Required empty public constructor
@@ -25,7 +33,34 @@ public class FareFragment extends Fragment {
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
     // Inflate the layout for this fragment
-    return inflater.inflate(R.layout.fragment_fare, container, false);
+    View v = inflater.inflate(R.layout.fragment_fare, container, false);
+
+    ApiInterface apiInterface = RetrofitClient.getClient().create(ApiInterface.class);
+    Call<FareCost> call = apiInterface.getFares();
+    call.enqueue(new Callback<FareCost>() {
+      @Override
+      public void onResponse(Call<FareCost> call, Response<FareCost> response) {
+        if (response.isSuccessful()) {
+          fareCost = response.body();
+          TextView test = v.findViewById(R.id.fare_cost);
+          TextView origin = v.findViewById(R.id.origin);
+          TextView dest = v.findViewById(R.id.dest);
+          test.setText(fareCost.getRoot().getTrip().getFare());
+          origin.setText(fareCost.getRoot().getOrigin());
+          dest.setText(fareCost.getRoot().getDestination());
+        } else {
+          Log.d("TAG ELSE: ", response.toString());
+        }
+      }
+
+      @Override
+      public void onFailure(Call<FareCost> call, Throwable t) {
+        Log.d("TAG FAILUER: ", t.getMessage());
+      }
+    });
+
+
+    return v;
   }
 
 }

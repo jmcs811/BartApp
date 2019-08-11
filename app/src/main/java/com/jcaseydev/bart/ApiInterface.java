@@ -1,6 +1,7 @@
 package com.jcaseydev.bart;
 
 import com.jcaseydev.bart.Model2.Arrivals.TrainArrival;
+import com.jcaseydev.bart.Model2.Fare.FareCost;
 import com.jcaseydev.bart.Model2.Stations.StationList;
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -15,5 +16,5 @@ public interface ApiInterface {
   Call<StationList> getStations();
 
   @GET("api/sched.aspx?cmd=fare&key=MW9S-E7SL-26DU-VV8V&orig=12th&dest=embr&json=y")
-  Call getFares();
+  Call<FareCost> getFares();
 }

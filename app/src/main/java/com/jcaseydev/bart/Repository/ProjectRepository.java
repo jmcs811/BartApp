@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData;
 import com.jcaseydev.bart.ApiInterface;
 import com.jcaseydev.bart.DAO.StationDao;
 import com.jcaseydev.bart.Model2.Arrivals.TrainArrival;
+import com.jcaseydev.bart.Model2.Fare.FareCost;
 import com.jcaseydev.bart.Model2.Stations.Station;
 import com.jcaseydev.bart.Model2.Stations.StationList;
 import com.jcaseydev.bart.RetrofitClient;
@@ -63,5 +64,26 @@ public class ProjectRepository {
     });
 
     return trainArrivals;
+  }
+
+  public MutableLiveData<FareCost> getFareCost() {
+    final MutableLiveData<FareCost> fareCost = new MutableLiveData<>();
+    apiInterface = RetrofitClient.getClient().create(ApiInterface.class);
+    Call<FareCost> call = apiInterface.getFares();
+    call.enqueue(new Callback<FareCost>() {
+      @Override
+      public void onResponse(Call<FareCost> call, Response<FareCost> response) {
+        if (response.isSuccessful()) {
+          fareCost.setValue(response.body());
+        }
+      }
+
+      @Override
+      public void onFailure(Call<FareCost> call, Throwable t) {
+
+      }
+    });
+
+    return fareCost;
   }
 }
