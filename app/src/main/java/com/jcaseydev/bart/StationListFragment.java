@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import com.google.android.material.snackbar.Snackbar;
 import com.jcaseydev.bart.Adapters.StationListAdapter;
 import com.jcaseydev.bart.Model2.Stations.Station;
 import com.jcaseydev.bart.ViewModels.StationListViewModel;
@@ -21,7 +22,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class StationListFragment extends Fragment {
+public class StationListFragment extends Fragment implements StationListAdapter.onStationListener {
 
   private RecyclerView stationRecyclerView;
   private StationListAdapter stationAdapter;
@@ -47,7 +48,7 @@ public class StationListFragment extends Fragment {
         DividerItemDecoration.VERTICAL
     ));
 
-    stationAdapter = new StationListAdapter(getContext(), stations);
+    stationAdapter = new StationListAdapter(getContext(), stations, this);
     stationRecyclerView.setAdapter(stationAdapter);
 
     return v;
@@ -64,5 +65,13 @@ public class StationListFragment extends Fragment {
       stations.addAll(stationList.getStations());
       stationAdapter.notifyDataSetChanged();
     });
+  }
+
+  @Override
+  public void onStationClick(int position) {
+    // Intent goes here
+    Snackbar snackbar = Snackbar
+        .make(getView(), stations.get(position).getName(), Snackbar.LENGTH_SHORT);
+    snackbar.show();
   }
 }

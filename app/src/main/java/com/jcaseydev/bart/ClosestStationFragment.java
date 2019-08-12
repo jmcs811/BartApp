@@ -8,14 +8,12 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.jcaseydev.bart.Adapters.ArrivalsAdapter;
 import com.jcaseydev.bart.Model2.Arrivals.Etd;
-import com.jcaseydev.bart.Model2.Arrivals.TrainArrival;
 import com.jcaseydev.bart.ViewModels.TrainArrivalViewModel;
 import java.util.ArrayList;
 import java.util.List;
@@ -67,13 +65,10 @@ public class ClosestStationFragment extends Fragment {
     super.onActivityCreated(savedInstanceState);
     arrivalsViewModel = ViewModelProviders.of(this).get(TrainArrivalViewModel.class);
     arrivalsViewModel.init();
-    arrivalsViewModel.getTrainArrivals().observe(this, new Observer<TrainArrival>() {
-      @Override
-      public void onChanged(TrainArrival trainArrival) {
-        testTextView.setText(trainArrival.getRoot().getStation().get(0).getName());
-        arrivals.addAll(trainArrival.getRoot().getStation().get(0).getEtd());
-        arrivalsAdapter.notifyDataSetChanged();
-      }
+    arrivalsViewModel.getTrainArrivals().observe(this, trainArrival -> {
+      testTextView.setText(trainArrival.getRoot().getStation().get(0).getName());
+      arrivals.addAll(trainArrival.getRoot().getStation().get(0).getEtd());
+      arrivalsAdapter.notifyDataSetChanged();
     });
   }
 }
