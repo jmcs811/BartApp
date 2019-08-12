@@ -3,6 +3,7 @@ package com.jcaseydev.bart.Adapters;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
@@ -13,12 +14,15 @@ import java.util.List;
 
 public class StationListAdapter extends RecyclerView.Adapter<StationListAdapter.CustomViewHolder> {
 
-  private List<Station> datalist;
+  private List<Station> stationList;
   private Context context;
+  private onStationListener onStationListener;
 
-  public StationListAdapter(Context context, List<Station> datalist) {
+  public StationListAdapter(Context context, List<Station> stationList,
+      onStationListener onStationListener) {
     this.context = context;
-    this.datalist = datalist;
+    this.stationList = stationList;
+    this.onStationListener = onStationListener;
   }
 
   @NonNull
@@ -26,37 +30,48 @@ public class StationListAdapter extends RecyclerView.Adapter<StationListAdapter.
   public CustomViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
     LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
     View view = layoutInflater.inflate(R.layout.list_item_station, parent, false);
-    return new CustomViewHolder(view);
+    return new CustomViewHolder(view, onStationListener);
   }
 
   @Override
   public void onBindViewHolder(@NonNull CustomViewHolder holder, int position) {
-    String city = datalist.get(position).getCity();
-    String zipCode = datalist.get(position).getZipcode();
-    holder.stationName.setText(datalist.get(position).getName());
-    holder.stationCity.setText(city + ", CA " + zipCode);
+    String city = stationList.get(position).getCity();
+    String zipCode = stationList.get(position).getZipcode();
+    holder.stationName.setText(stationList.get(position).getName());
+    holder.stationCity.setText(context.getString(R.string.station_location, city, zipCode));
   }
 
   @Override
   public int getItemCount() {
-    return datalist.size();
+    return stationList.size();
   }
 
-  class CustomViewHolder  extends RecyclerView.ViewHolder {
+  class CustomViewHolder extends RecyclerView.ViewHolder implements OnClickListener {
 
     public final View mView;
     TextView stationName;
     TextView stationCity;
+    onStationListener onStationListener;
 
-    public CustomViewHolder(@NonNull View itemView) {
+    public CustomViewHolder(@NonNull View itemView, onStationListener onStationListener) {
       super(itemView);
 
       mView = itemView;
       stationName = mView.findViewById(R.id.station_name);
       stationCity = mView.findViewById(R.id.station_city);
+      this.onStationListener = onStationListener;
+
+      itemView.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+      onStationListener.onStationClick(getAdapterPosition());
     }
   }
 
+  public interface onStationListener {
 
-
+    void onStationClick(int position);
+  }
 }

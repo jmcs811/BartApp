@@ -1,9 +1,16 @@
 package com.jcaseydev.bart.Model2.Stations;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import java.util.Date;
 
+@Entity
 public class Station {
+
+  @PrimaryKey
+  private int id;
 
   @SerializedName("name")
   @Expose
@@ -32,6 +39,8 @@ public class Station {
   @SerializedName("zipcode")
   @Expose
   private String zipcode;
+
+  private Date lastRefresh;
 
   public String getName() {
     return name;
@@ -105,4 +114,19 @@ public class Station {
     this.zipcode = zipcode;
   }
 
+  public int getId() {
+    return id;
+  }
+
+  public void setId(int id) {
+    this.id = id;
+  }
+
+  public Date getLastRefresh() {
+    return lastRefresh;
+  }
+
+  public void setLastRefresh(Date lastRefresh) {
+    this.lastRefresh = lastRefresh;
+  }
 }

@@ -39,9 +39,9 @@ public class ArrivalsAdapter extends RecyclerView.Adapter<ArrivalsAdapter.Custom
     String length = stationArrivals.get(0).getLength();
 
     holder.stationName.setText(stations.get(position).getDestination());
-    holder.minutes.setText("Minutes: " + minutes);
-    holder.platform.setText("Platform: " + platform);
-    holder.length.setText("Length: " + length);
+    holder.minutes.setText(context.getString(R.string.arrivals_minutes, minutes));
+    holder.platform.setText(context.getString(R.string.arrivals_platform, platform));
+    holder.length.setText(context.getString(R.string.arrivals_length, length));
   }
 
   @Override
