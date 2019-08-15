@@ -26,10 +26,6 @@ public class TrainArrival {
     return root;
   }
 
-  public void setRoot(ArrivalRoot root) {
-    this.root = root;
-  }
-
   public List<Etd> getArrivals() {
     return root.getStation().get(0).getEtd();
   }
