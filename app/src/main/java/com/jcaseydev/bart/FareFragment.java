@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 import androidx.fragment.app.Fragment;
@@ -42,6 +43,15 @@ public class FareFragment extends Fragment {
 
     Spinner orginSpinner = v.findViewById(R.id.origin_spinner);
     Spinner destSpinner = v.findViewById(R.id.destination_spinner);
+
+    ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
+        getContext(),
+        R.array.sations_list,
+        R.layout.support_simple_spinner_dropdown_item);
+
+    adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+    destSpinner.setAdapter(adapter);
+    orginSpinner.setAdapter(adapter);
 
     ApiInterface apiInterface = RetrofitClient.getClient().create(ApiInterface.class);
     Call<FareCost> call = apiInterface.getFares();
