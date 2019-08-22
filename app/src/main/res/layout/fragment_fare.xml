@@ -49,17 +49,27 @@
           android:id="@+id/one_way_fare"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:layout_marginTop="40dp"
           android:layout_marginStart="8dp"
           app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toBottomOf="@+id/destination_spinner"
-          />
+          app:layout_constraintTop_toBottomOf="@+id/calculate_fares"/>
         <TextView
           android:id="@+id/round_trip_fare"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
+          android:layout_marginTop="8dp"
           android:layout_marginStart="8dp"
           app:layout_constraintStart_toStartOf="parent"
           app:layout_constraintTop_toBottomOf="@+id/one_way_fare"/>
+        <Button
+          android:id="@+id/calculate_fares"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="8dp"
+          android:layout_marginStart="8dp"
+          android:layout_marginEnd="8dp"
+          android:text="Calculate Fare"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/destination_spinner"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
