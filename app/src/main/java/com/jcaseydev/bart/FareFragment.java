@@ -32,6 +32,8 @@ public class FareFragment extends Fragment {
   private Root rootFare;
   private List<Station> stations = new ArrayList<>();
   private Button getFareButton;
+  private TextView oneWay;
+  private TextView roundTrip;
 
   public FareFragment() {
     // Required empty public constructor
@@ -56,69 +58,43 @@ public class FareFragment extends Fragment {
     destSpinner.setAdapter(adapter);
     originSpinner.setAdapter(adapter);
 
-    getFareButton = v.findViewById(R.id.calculate_fares);
-    getFareButton.setOnClickListener(new OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        ApiInterface apiInterface = RetrofitClient.getClient().create(ApiInterface.class);
-        Call<FareCost> call = apiInterface.getFares(
-            "EMBR",
-            "NCON"
-        );
-        call.enqueue(new Callback<FareCost>() {
-          @Override
-          public void onResponse(Call<FareCost> call, Response<FareCost> response) {
-            if (response.isSuccessful()) {
-              fareCost = response.body();
-              float fare = Float.valueOf(fareCost.getFare());
-              TextView oneWay = v.findViewById(R.id.one_way_fare);
-              TextView roundTrip = v.findViewById(R.id.round_trip_fare);
-              oneWay
-                  .setText(getContext().getString(R.string.one_way_fare_cost, fareCost.getFare()));
-              roundTrip.setText(
-                  getContext().getString(R.string.round_trip_fare_cost, String.valueOf(fare * 2)));
-            } else {
-              Log.d("TAG ELSE: ", response.toString());
-            }
-          }
+    oneWay = v.findViewById(R.id.one_way_fare);
+    roundTrip = v.findViewById(R.id.round_trip_fare);
 
-          @Override
-          public void onFailure(Call<FareCost> call, Throwable t) {
-            Log.d("TAG FAILURE: ", t.getMessage());
-          }
-        });
-      }
-    });
+    getFareButton = v.findViewById(R.id.calculate_fares);
+    getFareButton.setOnClickListener(v1 -> getFares(originSpinner, destSpinner));
 
     return v;
   }
 
-//  private void getFares(View v, Spinner originSpinner, Spinner destSpinner) {
-//    ApiInterface apiInterface = RetrofitClient.getClient().create(ApiInterface.class);
-//    Call<FareCost> call = apiInterface.getFares(
-//        originSpinner.getSelectedItem().toString(),
-//        destSpinner.getSelectedItem().toString()
-//    );
-//    call.enqueue(new Callback<FareCost>() {
-//      @Override
-//      public void onResponse(Call<FareCost> call, Response<FareCost> response) {
-//        if (response.isSuccessful()) {
-//          fareCost = response.body();
-//          float fare = Float.valueOf(fareCost.getFare());
-//          TextView oneWay = v.findViewById(R.id.one_way_fare);
-//          TextView roundTrip = v.findViewById(R.id.round_trip_fare);
-//          oneWay.setText(getContext().getString(R.string.one_way_fare_cost, fareCost.getFare()));
-//          roundTrip.setText(getContext().getString(R.string.round_trip_fare_cost, String.valueOf(fare*2)));
-//        } else {
-//          Log.d("TAG ELSE: ", response.toString());
-//        }
-//      }
-//
-//      @Override
-//      public void onFailure(Call<FareCost> call, Throwable t) {
-//        Log.d("TAG FAILURE: ", t.getMessage());
-//      }
-//    });
-//  }
+  private void getFares(Spinner originSpinner, Spinner destSpinner) {
+    ApiInterface apiInterface = RetrofitClient.getClient().create(ApiInterface.class);
+    Call<FareCost> call = apiInterface.getFares(
+        "EMBR",
+        "NCON"
+    );
+    call.enqueue(new Callback<FareCost>() {
+      @Override
+      public void onResponse(Call<FareCost> call, Response<FareCost> response) {
+        if (response.isSuccessful()) {
+          fareCost = response.body();
+          float fare = Float.valueOf(fareCost.getFare());
+          oneWay.setText(getContext()
+              .getString(R.string.one_way_fare_cost, fareCost.getFare())
+          );
 
+          roundTrip.setText(getContext()
+              .getString(R.string.round_trip_fare_cost, String.valueOf(fare * 2))
+          );
+        } else {
+          Log.d("TAG ELSE: ", response.toString());
+        }
+      }
+
+      @Override
+      public void onFailure(Call<FareCost> call, Throwable t) {
+        Log.d("TAG FAILURE: ", t.getMessage());
+      }
+    });
+  }
 }
