@@ -62,24 +62,24 @@ public class ProjectRepository {
     return trainArrivals;
   }
 
-//  public MutableLiveData<FareCost> getFareCost() {
-//    final MutableLiveData<FareCost> fareCost = new MutableLiveData<>();
-//    apiInterface = RetrofitClient.getClient().create(ApiInterface.class);
-//    Call<FareCost> call = apiInterface.getFares();
-//    call.enqueue(new Callback<FareCost>() {
-//      @Override
-//      public void onResponse(Call<FareCost> call, Response<FareCost> response) {
-//        if (response.isSuccessful()) {
-//          fareCost.setValue(response.body());
-//        }
-//      }
-//
-//      @Override
-//      public void onFailure(Call<FareCost> call, Throwable t) {
-//        Log.d("FARES FAIL", t.getMessage());
-//      }
-//    });
-//
-//    return fareCost;
-//  }
+  public MutableLiveData<FareCost> getFareCost(String orig, String dest) {
+    final MutableLiveData<FareCost> fareCost = new MutableLiveData<>();
+    apiInterface = RetrofitClient.getClient().create(ApiInterface.class);
+    Call<FareCost> call = apiInterface.getFares(orig, dest);
+    call.enqueue(new Callback<FareCost>() {
+      @Override
+      public void onResponse(Call<FareCost> call, Response<FareCost> response) {
+        if (response.isSuccessful()) {
+          fareCost.setValue(response.body());
+        }
+      }
+
+      @Override
+      public void onFailure(Call<FareCost> call, Throwable t) {
+        Log.d("FARES FAIL", t.getMessage());
+      }
+    });
+
+    return fareCost;
+  }
 }

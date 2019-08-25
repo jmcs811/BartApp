@@ -11,10 +11,17 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.ViewModelProviders;
+import com.jcaseydev.bart.Adapters.StationListAdapter;
 import com.jcaseydev.bart.Model2.Fare.FareCost;
 import com.jcaseydev.bart.Model2.Fare.Root;
 import com.jcaseydev.bart.Model2.Stations.Station;
+import com.jcaseydev.bart.Model2.Stations.StationList;
+import com.jcaseydev.bart.Repository.ProjectRepository;
+import com.jcaseydev.bart.ViewModels.StationListViewModel;
 import java.util.ArrayList;
 import java.util.List;
 import retrofit2.Call;
@@ -31,9 +38,14 @@ public class FareFragment extends Fragment {
   private FareCost fareCost;
   private Root rootFare;
   private List<Station> stations = new ArrayList<>();
+  private StationListViewModel stationViewModel;
   private Button getFareButton;
   private TextView oneWay;
   private TextView roundTrip;
+  private ArrayAdapter<Station> adapter;
+  private Spinner originSpinner;
+  private Spinner destSpinner;
+
 
   public FareFragment() {
     // Required empty public constructor
@@ -46,17 +58,8 @@ public class FareFragment extends Fragment {
     // Inflate the layout for this fragment
     View v = inflater.inflate(R.layout.fragment_fare, container, false);
 
-    Spinner originSpinner = v.findViewById(R.id.origin_spinner);
-    Spinner destSpinner = v.findViewById(R.id.destination_spinner);
-
-    ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
-        getContext(),
-        R.array.sations_list,
-        R.layout.support_simple_spinner_dropdown_item);
-
-    adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
-    destSpinner.setAdapter(adapter);
-    originSpinner.setAdapter(adapter);
+    originSpinner = v.findViewById(R.id.origin_spinner);
+    destSpinner = v.findViewById(R.id.destination_spinner);
 
     oneWay = v.findViewById(R.id.one_way_fare);
     roundTrip = v.findViewById(R.id.round_trip_fare);
@@ -68,33 +71,35 @@ public class FareFragment extends Fragment {
   }
 
   private void getFares(Spinner originSpinner, Spinner destSpinner) {
-    ApiInterface apiInterface = RetrofitClient.getClient().create(ApiInterface.class);
-    Call<FareCost> call = apiInterface.getFares(
-        "EMBR",
-        "NCON"
+    // TODO: get spinner to work properly!!!
+    ProjectRepository projectRepository = new ProjectRepository();
+    LiveData<FareCost> fareCostLiveData;
+
+    fareCostLiveData = projectRepository.getFareCost("NCON", "EMBR");
+
+    //oneWay.setText(fareCostLiveData.getValue().getFare());
+    //roundTrip.setText(String.valueOf(Float.valueOf(fareCostLiveData.getValue().getFare()) * 2));
+  }
+
+  @Override
+  public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+    super.onActivityCreated(savedInstanceState);
+    // Use ViewModel to get data
+    stationViewModel = ViewModelProviders.of(this).get(StationListViewModel.class);
+    stationViewModel.init();
+    stationViewModel.getStationList().observe(
+        this,
+        stationList -> stations.addAll(stationList.getStations())
     );
-    call.enqueue(new Callback<FareCost>() {
-      @Override
-      public void onResponse(Call<FareCost> call, Response<FareCost> response) {
-        if (response.isSuccessful()) {
-          fareCost = response.body();
-          float fare = Float.valueOf(fareCost.getFare());
-          oneWay.setText(getContext()
-              .getString(R.string.one_way_fare_cost, fareCost.getFare())
-          );
 
-          roundTrip.setText(getContext()
-              .getString(R.string.round_trip_fare_cost, String.valueOf(fare * 2))
-          );
-        } else {
-          Log.d("TAG ELSE: ", response.toString());
-        }
-      }
+    adapter = new ArrayAdapter<>(
+        getContext(),
+        android.R.layout.simple_spinner_item,
+        stations
+    );
+    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-      @Override
-      public void onFailure(Call<FareCost> call, Throwable t) {
-        Log.d("TAG FAILURE: ", t.getMessage());
-      }
-    });
+    destSpinner.setAdapter(adapter);
+    originSpinner.setAdapter(adapter);
   }
 }

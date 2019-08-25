@@ -1,5 +1,6 @@
 package com.jcaseydev.bart.Model2.Stations;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 import com.google.gson.annotations.Expose;
@@ -128,5 +129,11 @@ public class Station {
 
   public void setLastRefresh(Date lastRefresh) {
     this.lastRefresh = lastRefresh;
+  }
+
+  @NonNull
+  @Override
+  public String toString() {
+    return name;
   }
 }
