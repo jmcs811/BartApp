@@ -22,7 +22,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class StationListFragment extends Fragment implements StationListAdapter.onStationListener {
+public class StationListFragment extends Fragment implements StationListAdapter.OnStationListener {
 
   private RecyclerView stationRecyclerView;
   private StationListAdapter stationAdapter;
